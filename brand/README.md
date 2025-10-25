@@ -14,6 +14,9 @@
   <a href="https://github.com/Olegmbq" target="_blank">
     <img src="https://img.shields.io/badge/🌐_GitHub-6600ff?style=for-the-badge&logo=github&logoColor=white&labelColor=0A0014" />
   </a>
+  <a href="https://bookshop-ruddy.vercel.app/" target="_blank">
+    <img src="https://img.shields.io/badge/🚀_Live_on_Vercel-00cc99?style=for-the-badge&logo=vercel&logoColor=white&labelColor=0A0014" alt="Live on Vercel" />
+  </a>
 </p>
 
 ---
