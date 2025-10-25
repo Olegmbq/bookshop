@@ -237,4 +237,53 @@ We don’t just code — we create digital stories.
 <img src="./brand/assets/logo_neon_holo.png" width="85" alt="Oleg & Neuro Code Studio Neon Logo"/><br>
 <b>Oleg & Neuro Code Studio</b>
 
+---
+
+## 🚀 Live Demo
+
+| 🌐 Project          | 🔗 Link                                                                    |
+| ------------------- | -------------------------------------------------------------------------- |
+| 🛍️ **Bookshop SPA** | [bookshop-ruddy.vercel.app](https://bookshop-ruddy.vercel.app)             |
+| 💎 **Brand Kit**    | [bookshop-ruddy.vercel.app/brand](https://bookshop-ruddy.vercel.app/brand) |
+
+---
+
+## ⚙️ Tech Stack
+
+| Layer              | Tools                               |
+| ------------------ | ----------------------------------- |
+| 🧠 **Core**        | JavaScript (ES6 Modules), Webpack 5 |
+| 🎨 **UI/UX**       | Pug, SCSS (BEM), Custom Animations  |
+| 📚 **Data Source** | Google Books API via Axios          |
+| 💾 **State**       | LocalStorage                        |
+| ☁️ **Deploy**      | Vercel (Serverless / Dist Build)    |
+| 💎 **Identity**    | Oleg & Neuro Code Studio Neon Brand |
+
+---
+
+## 💎 About the Project
+
+**Bookshop SPA** is a single-page online bookstore where code meets art.  
+Each animation, color, and pixel is crafted in the neon rhythm of **Oleg & Neuro Code Studio**.
+
+> 🧩 Logic • 🎨 Art • ❤️ Emotion — united in one creation.
+
+---
+
+## ❤️ Created with Love
+
+<p align="center">
+  <img src="./brand/assets/logo_neon_holo.png" width="110" alt="Oleg & Neuro Code Studio Logo"/><br><br>
+
+<strong>Crafted with ❤️ by
+<a href="https://github.com/Olegmbq" target="_blank">Oleg & Neuro Code Studio</a></strong><br>
+<em>🧠 A fusion of logic, art & emotion — built with harmony and inspiration.</em><br>
+<sub>© 2025 Oleg & Neuro Code Studio — All Rights Reserved.</sub>
+
+</p>
+
+---
+
+<p align="center" style="font-weight:bold; color:#ff00cc;">
+✨ “We don’t just code — we illuminate.” ✨
 </p>
