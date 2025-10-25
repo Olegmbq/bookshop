@@ -27,7 +27,12 @@ export default async () => {
   return {
     mode: isDev ? "development" : "production",
 
-    entry: "./src/index.js",
+    // entry
+    entry: {
+      main: "./src/index.js",
+      brand: "./src/modules/brand.js", // 💎 добавляем точку входа для brand
+    },
+
     output: {
       path: path.resolve("dist"),
       filename: "bundle.[contenthash].js",
@@ -36,42 +41,49 @@ export default async () => {
 
     module: {
       rules: [
-        { test: /\.pug$/, use: ["pug-loader"] },
-        { test: /\.js$/, exclude: /node_modules/, use: ["babel-loader"] },
         {
-          test: /\.(scss|css)$/,
+          test: /\.s[ac]ss$/i,
           use: [
             MiniCssExtractPlugin.loader,
             "css-loader",
             {
               loader: "sass-loader",
-              options: { implementation: sass },
+              options: {
+                implementation: sass,
+              },
             },
           ],
         },
         {
-          test: /\.(png|jpe?g|gif|svg|ico)$/i,
+          test: /\.pug$/,
+          loader: "pug-loader",
+          exclude: /node_modules/,
+        },
+        {
+          test: /\.(png|jpe?g|gif|svg)$/i,
           type: "asset/resource",
-          generator: { filename: "images/[name][ext]" },
         },
       ],
     },
 
+    // ↓ ниже, в разделе plugins:
     plugins: [
-      new CleanWebpackPlugin(),
       new HtmlWebpackPlugin({
         template: "./src/templates/index.pug",
         filename: "index.html",
-        favicon: path.resolve(__dirname, "brand/assets/favicon.png"),
-        minify: isProd
-          ? { collapseWhitespace: true, removeComments: true }
-          : false,
+        chunks: ["main"], // подключаем только основной JS
       }),
-
       new HtmlWebpackPlugin({
-        template: "./src/templates/brand.pug",
-        filename: "brand/index.html",
+        template: "./src/templates/cart.pug",
+        filename: "cart/index.html",
+        chunks: ["main"],
       }),
+      new HtmlWebpackPlugin({
+        template: "./src/templates/brand.pug", // 🔥 новый шаблон
+        filename: "brand/index.html",
+        chunks: ["brand"], // подключаем brand.js + стили
+      }),
+      // остальные плагины (CopyPlugin, CleanWebpackPlugin и т.д.)
 
       new MiniCssExtractPlugin({
         filename: isDev ? "styles.css" : "styles.[contenthash].css",
