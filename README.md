@@ -243,8 +243,8 @@ We don’t just code — we create digital stories.
 
 | 🌐 Project          | 🔗 Link                                                                    |
 | ------------------- | -------------------------------------------------------------------------- |
-| 🛍️ **Bookshop SPA** | [bookshop-ruddy.vercel.app](https://bookshop-ruddy.vercel.app)             |
-| 💎 **Brand Kit**    | [bookshop-ruddy.vercel.app/brand](https://bookshop-ruddy.vercel.app/brand) |
+| 🛍️ **Bookshop SPA** | [bookshop-ruddy.vercel.app](https://bookshop-ucz5.vercel.app)             |
+| 💎 **Brand Kit**    | [bookshop-ruddy.vercel.app/brand](https://bookshop-ucz5.vercel.app/brand) |
 
 ---
 
