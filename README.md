@@ -244,7 +244,7 @@ We don’t just code — we create digital stories.
 | 🌐 Project          | 🔗 Link                                                                    |
 | ------------------- | -------------------------------------------------------------------------- |
 | 🛍️ **Bookshop SPA** | [bookshop-ucz5.vercel.app](https://bookshop-ucz5.vercel.app)             |
-| 💎 **Brand Kit**    | [bookshop--ucz5.vercel.app/brand](https://bookshop-ucz5.vercel.app/brand) |
+| 💎 **Brand Kit**    | [bookshop-ucz5.vercel.app/brand](https://bookshop-ucz5.vercel.app/brand) |
 
 ---
 
