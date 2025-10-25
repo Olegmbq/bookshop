@@ -28,12 +28,10 @@ export default async () => {
     mode: isDev ? "development" : "production",
 
     entry: "./src/index.js",
-
     output: {
-      path: path.resolve(__dirname, "dist"),
-      filename: isDev ? "[name].[fullhash].js" : "bundle.[contenthash].js",
-      assetModuleFilename: "assets/[hash][ext][query]",
-      clean: true,
+      path: path.resolve("dist"),
+      filename: "bundle.[contenthash].js",
+      assetModuleFilename: "images/[name][ext]",
     },
 
     module: {
@@ -69,6 +67,12 @@ export default async () => {
           ? { collapseWhitespace: true, removeComments: true }
           : false,
       }),
+
+      new HtmlWebpackPlugin({
+        template: "./src/templates/brand.pug",
+        filename: "brand/index.html",
+      }),
+
       new MiniCssExtractPlugin({
         filename: isDev ? "styles.css" : "styles.[contenthash].css",
       }),
