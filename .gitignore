@@ -1,0 +1,19 @@
+# === Git ignore rules for Bookshop ===
+
+# Node modules and build output
+node_modules/
+dist/
+
+# Environment and system files
+.env
+.env.local
+.DS_Store
+
+# Logs and cache
+*.log
+.cache/
+.vscode/
+.idea/
+
+# OS files
+Thumbs.db

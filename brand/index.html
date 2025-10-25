@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Oleg & Neuro Code Studio — Brand Kit</title>
+    <link rel="icon" type="image/png" href="./assets/favicon.png" />
+    <link rel="shortcut icon" href="./assets/favicon.png" type="image/x-icon" />
+
+    <style>
+      /* 🌌 Фон и базовая анимация */
+      body {
+        margin: 0;
+        padding: 0;
+        font-family: "Segoe UI", Roboto, sans-serif;
+        background: linear-gradient(120deg, #0a0014, #190024, #001e1f, #1f0023);
+        background-size: 400% 400%;
+        animation: gradientMove 20s ease infinite;
+        color: #fff;
+        overflow-x: hidden;
+        padding-bottom: 80px;
+        scroll-behavior: smooth;
+        cursor: none; /* 🔮 скрываем системный курсор */
+      }
+
+      @keyframes gradientMove {
+        0% {
+          background-position: 0% 50%;
+        }
+        50% {
+          background-position: 100% 50%;
+        }
+        100% {
+          background-position: 0% 50%;
+        }
+      }
+
+      /* 🌟 звёздное мерцание на фоне */
+      body::before {
+        content: "";
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-image: radial-gradient(
+            2px 2px at 10% 20%,
+            rgba(255, 255, 255, 0.15),
+            transparent
+          ),
+          radial-gradient(
+            2px 2px at 90% 80%,
+            rgba(255, 255, 255, 0.1),
+            transparent
+          ),
+          radial-gradient(
+            2px 2px at 50% 50%,
+            rgba(255, 255, 255, 0.08),
+            transparent
+          );
+        background-size: 400px 400px;
+        animation: starsMove 30s linear infinite;
+        z-index: 0;
+      }
+
+      @keyframes starsMove {
+        0% {
+          background-position: 0 0, 100px 200px, 200px 400px;
+        }
+        100% {
+          background-position: 400px 800px, 500px 600px, 300px 200px;
+        }
+      }
+
+      #particles,
+      #cursor-glow {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        z-index: 1;
+      }
+
+      #cursor-glow {
+        background: radial-gradient(
+          circle,
+          rgba(255, 100, 255, 0.15) 0%,
+          transparent 80%
+        );
+        mix-blend-mode: screen;
+        transform: translate(-50%, -50%);
+        position: fixed;
+        width: 250px;
+        height: 250px;
+        border-radius: 50%;
+        opacity: 0.6;
+        transition: transform 0.1s linear;
+        z-index: 2;
+      }
+
+      header,
+      main,
+      footer {
+        position: relative;
+        z-index: 3;
+      }
+
+      /* 💎 Шапка */
+      header {
+        position: sticky;
+        top: 0;
+        text-align: center;
+        padding: 20px 0;
+        background: rgba(255, 0, 153, 0.4);
+        backdrop-filter: blur(15px);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+        box-shadow: 0 0 25px rgba(255, 0, 153, 0.5);
+        animation: neonPulse 6s ease-in-out infinite;
+        transition: all 0.3s ease;
+        z-index: 1000;
+      }
+
+      header.scrolled {
+        background: rgba(255, 0, 153, 0.9);
+        padding: 12px 0;
+      }
+
+      header::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 3px;
+        background: linear-gradient(90deg, #ff00cc, #ff66ff, #00ffff, #ff00cc);
+        background-size: 300%;
+        animation: laserMove 6s linear infinite;
+        box-shadow: 0 0 12px #ff00ff;
+      }
+
+      @keyframes laserMove {
+        0% {
+          background-position: 0% 50%;
+        }
+        100% {
+          background-position: 100% 50%;
+        }
+      }
+
+      @keyframes neonPulse {
+        0%,
+        100% {
+          box-shadow: 0 0 25px rgba(255, 0, 204, 0.4);
+        }
+        50% {
+          box-shadow: 0 0 50px rgba(255, 153, 255, 0.7);
+        }
+      }
+
+      h1 {
+        font-size: 2rem;
+        letter-spacing: 1px;
+        text-shadow: 0 0 10px #ff33cc, 0 0 25px #ff66ff;
+      }
+
+      /* 🌠 Контент */
+      main {
+        padding: 120px 10% 60px;
+      }
+
+      section {
+        margin-bottom: 60px;
+        opacity: 0;
+        transform: translateY(40px);
+        transition: all 0.8s ease;
+      }
+
+      section.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      h2 {
+        color: #ff66cc;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+        padding-bottom: 5px;
+        text-shadow: 0 0 5px #ff99cc;
+      }
+
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 25px;
+        margin-top: 25px;
+      }
+
+      .card {
+        position: relative;
+        background: rgba(255, 255, 255, 0.05);
+        padding: 20px;
+        border-radius: 15px;
+        text-align: center;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        opacity: 0;
+        transform: scale(0.95);
+      }
+
+      .card.visible {
+        opacity: 1;
+        transform: scale(1);
+        transition: all 0.6s ease-out;
+      }
+
+      .card:hover {
+        transform: translateY(-5px) scale(1.03);
+        box-shadow: 0 0 25px rgba(255, 0, 204, 0.5),
+          0 0 40px rgba(255, 102, 255, 0.2);
+      }
+
+      .card:hover::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        border-radius: 15px;
+        box-shadow: 0 0 35px rgba(255, 0, 255, 0.3),
+          0 0 55px rgba(0, 255, 255, 0.25);
+        z-index: -1;
+      }
+
+      img {
+        width: 100%;
+        max-width: 200px;
+        height: auto;
+        margin-bottom: 15px;
+        border-radius: 10px;
+        box-shadow: 0 0 20px rgba(255, 0, 255, 0.3);
+      }
+
+      /* ⚡ Футер с градиентным свечением */
+      footer {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        text-align: center;
+        padding: 15px;
+        background: linear-gradient(
+          90deg,
+          rgba(255, 0, 204, 0.1),
+          rgba(0, 255, 255, 0.1)
+        );
+        background-size: 200% 100%;
+        border-top: 1px solid rgba(255, 255, 255, 0.15);
+        backdrop-filter: blur(8px);
+        color: #ccc;
+        z-index: 999;
+        font-size: 0.85rem;
+        animation: footerFlow 8s linear infinite;
+      }
+
+      @keyframes footerFlow {
+        0% {
+          background-position: 0% 50%;
+        }
+        100% {
+          background-position: 100% 50%;
+        }
+      }
+
+      footer b {
+        color: #fff;
+      }
+      footer span {
+        color: #ff66cc;
+      }
+    </style>
+  </head>
+
+  <body>
+    <canvas id="particles"></canvas>
+    <div id="cursor-glow"></div>
+
+    <header>
+      <h1>💎 Oleg & Neuro Code Studio — Brand Kit</h1>
+    </header>
+
+    <main>
+      <section>
+        <img
+          src="./assets/logo_neon_holo.png"
+          alt="Oleg & Neuro Code Studio Logo"
+          class="brand-logo"
+        />
+        <p class="brand-tagline">Crafted with ❤️ by Oleg & Neuro Code Studio</p>
+
+        <h2>✨ Main Logos</h2>
+        <div class="grid">
+          <div class="card">
+            <img src="./assets/logo_primary.png" alt="Primary Logo" />
+            <p>
+              <b>Primary Logo</b><br />Used for docs, GitHub, and official
+              materials.
+            </p>
+          </div>
+          <div class="card">
+            <img src="./assets/logo_metal_premium.png" alt="3D Metallic Logo" />
+            <p>
+              <b>3D Metallic Logo</b><br />Premium look for presentations and
+              print.
+            </p>
+          </div>
+          <div class="card">
+            <img
+              src="./assets/logo_neon_holo.png"
+              alt="Neon Holographic Logo"
+            />
+            <p>
+              <b>Neon Holographic</b><br />For web, motion, and promo visuals.
+            </p>
+          </div>
+          <div class="card">
+            <img src="./assets/logo_white_mono.png" alt="White Mono Logo" />
+            <p>
+              <b>White Mono</b><br />Perfect on dark backgrounds and overlays.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <h2>🔹 Mini Assets</h2>
+        <div class="grid">
+          <div class="card">
+            <img src="./assets/neon-mini.png" alt="Mini Neon" />
+            <p>
+              <b>Neon Mini</b><br />Glowing, futuristic icon for digital use.
+            </p>
+          </div>
+          <div class="card">
+            <img src="./assets/metal-mini.png" alt="Mini 3D" />
+            <p><b>3D Mini</b><br />Premium realism for branding and prints.</p>
+          </div>
+          <div class="card">
+            <img src="./assets/flat-mini.png" alt="Mini Flat" />
+            <p><b>Flat Mini</b><br />Clean, simple for UI and docs.</p>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <h2>🔗 QR Codes</h2>
+        <p style="color: #ccc">Scan to visit our GitHub — <b>@Olegmbq</b></p>
+        <div class="grid">
+          <div class="card">
+            <img src="./assets/qr_neon.png" alt="Neon QR Code" />
+            <p>
+              <b>Neon QR Code</b><br />Vibrant glowing style — modern & bold.
+            </p>
+          </div>
+          <div class="card">
+            <img src="./assets/qr_flat.png" alt="Flat QR Code" />
+            <p><b>Flat QR Code</b><br />Clean version for print and docs.</p>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <h2>💫 Brand Essence</h2>
+        <p><em>“We don’t just code — we create digital stories.”</em></p>
+        <p>
+          A fusion of logic, art, and emotion — built by
+          <b>Oleg & Neuro Code Studio</b>.
+        </p>
+      </section>
+    </main>
+
+    <footer>
+      © 2025 <b>Oleg & Neuro Code Studio</b> — All Rights Reserved.<br />
+      Created with <span>❤️</span> by <b>Oleg & Neuro Code Studio</b>
+    </footer>
+
+    <script>
+      // 🌠 Плавное появление секций
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) entry.target.classList.add("visible");
+          });
+        },
+        { threshold: 0.2 }
+      );
+      document
+        .querySelectorAll("section, .card")
+        .forEach((el) => observer.observe(el));
+
+      // 💎 Реакция шапки на скролл
+      window.addEventListener("scroll", () => {
+        const header = document.querySelector("header");
+        if (window.scrollY > 50) header.classList.add("scrolled");
+        else header.classList.remove("scrolled");
+      });
+
+      // ✨ Частицы
+      const canvas = document.getElementById("particles");
+      const ctx = canvas.getContext("2d");
+      let w,
+        h,
+        particles = [];
+
+      function resize() {
+        w = canvas.width = window.innerWidth;
+        h = canvas.height = window.innerHeight;
+      }
+      window.addEventListener("resize", resize);
+      resize();
+
+      class Particle {
+        constructor() {
+          this.reset();
+        }
+        reset() {
+          this.x = Math.random() * w;
+          this.y = Math.random() * h;
+          this.size = Math.random() * 2 + 1;
+          this.speedX = (Math.random() - 0.5) * 0.5;
+          this.speedY = (Math.random() - 0.5) * 0.5;
+          this.color = `hsla(${Math.random() * 360}, 100%, 70%, 0.8)`;
+        }
+        update() {
+          this.x += this.speedX;
+          this.y += this.speedY;
+          if (this.x < 0 || this.x > w || this.y < 0 || this.y > h)
+            this.reset();
+        }
+        draw() {
+          ctx.beginPath();
+          ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+          ctx.fillStyle = this.color;
+          ctx.fill();
+        }
+      }
+
+      for (let i = 0; i < 100; i++) particles.push(new Particle());
+      function animate() {
+        ctx.clearRect(0, 0, w, h);
+        particles.forEach((p) => {
+          p.update();
+          p.draw();
+        });
+        requestAnimationFrame(animate);
+      }
+      animate();
+
+      // 🌙 Неоновое свечение курсора
+      const cursorGlow = document.getElementById("cursor-glow");
+      document.addEventListener("mousemove", (e) => {
+        cursorGlow.style.transform = `translate(${e.clientX}px, ${e.clientY}px)`;
+      });
+
+      // 🌍 Определяем окружение (локальное или GitHub)
+      const isLocal = window.location.hostname.includes("localhost");
+      const brandLink = document.getElementById("brand-link");
+      const bookshopLink = document.getElementById("bookshop-link");
+      if (brandLink && bookshopLink) {
+        if (isLocal) {
+          brandLink.href = "http://localhost:8085/";
+          bookshopLink.href = "http://localhost:8080/";
+        } else {
+          brandLink.href = "https://olegmbq.github.io/bookshop/brand/";
+          bookshopLink.href = "https://olegmbq.github.io/bookshop/";
+        }
+      }
+    </script>
+  </body>
+</html>

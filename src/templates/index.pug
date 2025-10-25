@@ -1,0 +1,65 @@
+doctype html
+html
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport" content="width=device-width, initial-scale=1.0")
+    title Bookshop
+  body
+    header.header
+      .container
+        h1.logo Bookshop
+        nav.nav
+          ul
+            li: a(href="#") Home
+            li: a(href="#") Categories
+            li: a(href="#") About
+            li: a(href="#") Contact
+
+        // 🧿 Бургер
+        .burger
+          span
+          span
+          span
+
+        // 🔍 Иконки
+        .icons
+          i.icon-search 🔍
+          i.icon-user 👤
+          .cart
+            i.icon-cart 🛒
+            span#cart-count 0
+
+    main.main
+      section.slider
+        .slider__image
+          img#slider-img(src="assets/images/slides/slide1.png" alt="Slide 1")
+          .slider__dots
+            span.slider__dot.active
+            span.slider__dot
+            span.slider__dot
+
+      
+      section.content
+        aside.categories
+          h3 Categories
+          ul#category-list
+            li.active(data-cat="architecture") Architecture
+            li(data-cat="art") Art
+            li(data-cat="biography") Biography
+            li(data-cat="business") Business
+            li(data-cat="children") Children's Books
+            li(data-cat="comics") Comics
+            li(data-cat="computers") Computers
+            li(data-cat="cooking") Cooking
+            li(data-cat="fiction") Fiction
+            li(data-cat="history") History
+            li(data-cat="romance") Romance
+            li(data-cat="science") Science
+            li(data-cat="travel") Travel
+        section.books
+          #book-list
+            p.loading Loading books...
+          button#load-more Load more
+
+    // Всплывающие уведомления
+    #toast-container

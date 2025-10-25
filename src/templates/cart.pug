@@ -1,0 +1,33 @@
+doctype html
+html
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport" content="width=device-width, initial-scale=1.0")
+    title Bookshop — Cart
+  body
+    header.header
+      .container
+        h1.logo Bookshop
+        nav.nav
+          ul
+            li: a(href="index.html") Home
+            li: a(href="#") Categories
+            li: a(href="#") About
+            li: a(href="#") Contact
+        .icons
+          i.icon-search 🔍
+          i.icon-user 👤
+          .cart
+            i.icon-cart 🛒
+            span#cart-count 0
+
+    main.main
+      section.cart
+        .container
+          h2 Your Cart
+          #cart-items
+            p.loading No items in your cart yet 😔
+          button#clear-cart Clear cart
+          button#checkout Checkout
+
+    div#toast-container
