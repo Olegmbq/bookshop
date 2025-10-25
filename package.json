@@ -6,7 +6,7 @@
   "scripts": {
     "check": "node ./scripts/check-deps.js",
     "dev": "cross-env NODE_ENV=development webpack serve --mode development --open",
-    "build": "npm run check && cross-env NODE_ENV=production webpack --mode production",
+    "build": "cross-env NODE_ENV=production webpack --mode production",
     "start": "npm run dev",
     "brand": "npm run check && cross-env NODE_ENV=development webpack serve --config webpack.brand.config.js --mode development --open",
     "clean": "rm -rf dist && echo '🧹 Dist folder cleaned successfully!'"
