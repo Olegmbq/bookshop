@@ -25,7 +25,7 @@
   <a href="https://olegmbq.github.io/bookshop/brand/" target="_blank">
     <img src="https://img.shields.io/badge/✨_Brand_Kit-ff00cc?style=for-the-badge&logo=figma&logoColor=white&labelColor=0A0014" alt="Brand Kit" />
   </a>
-  <a href="https://olegmbq.github.io/bookshop/" target="_blank">
+  <a href="https://bookshop-ucz5.vercel.app/" target="_blank">
     <img src="https://img.shields.io/badge/📚_Bookshop_SPA-00ffff?style=for-the-badge&logo=readme&logoColor=white&labelColor=0A0014" alt="Bookshop SPA" />
   </a>
   <a href="https://github.com/Olegmbq" target="_blank">
