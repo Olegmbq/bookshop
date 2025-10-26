@@ -13,35 +13,40 @@ import portfinder from "portfinder";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-// 🧰 Получаем режим сборки (development или production)
+// 🧰 Режим сборки
 const isDev = process.env.NODE_ENV === "development";
 const isProd = !isDev;
-
 console.log(`🚀 Режим сборки: ${isDev ? "разработка" : "продакшн"}`);
 
-// 🚀 Экспорт конфига как асинхронная функция
+// 🚀 Экспорт конфигурации
 export default async () => {
-  // 🧠 Ищем свободный порт, начиная с 8080
   const port = await portfinder.getPortPromise({ port: 8080 });
 
   return {
     mode: isDev ? "development" : "production",
 
-    // entry
+    // 💡 Точки входа
     entry: {
       main: "./src/index.js",
-      brand: "./src/modules/brand.js", // 💎 добавляем точку входа для brand
+      brand: "./src/modules/brand.js",
     },
 
+    // 📤 Выходные файлы
     output: {
       path: path.resolve("dist"),
       filename: "bundle.[contenthash].js",
       assetModuleFilename: "images/[name][ext]",
-      publicPath: "/bookshop/",
+      publicPath: process.env.VERCEL ? "/" : "/bookshop/",
     },
 
+    // 🔧 Загрузчики
     module: {
       rules: [
+        {
+          test: /\.pug$/,
+          loader: "pug-loader",
+          options: { pretty: true },
+        },
         {
           test: /\.s[ac]ss$/i,
           use: [
@@ -49,26 +54,26 @@ export default async () => {
             "css-loader",
             {
               loader: "sass-loader",
-              options: {
-                implementation: sass,
-              },
+              options: { implementation: sass },
             },
           ],
         },
         {
-          test: /\.pug$/,
-          loader: "pug-loader",
-          exclude: /node_modules/,
+          test: /\.(png|jpg|jpeg|gif|svg)$/i,
+          type: "asset/resource",
         },
         {
-          test: /\.(png|jpe?g|gif|svg)$/i,
-          type: "asset/resource",
+          test: /\.js$/,
+          exclude: /node_modules/,
+          use: {
+            loader: "babel-loader",
+            options: { presets: ["@babel/preset-env"] },
+          },
         },
       ],
     },
 
-    // ↓ ниже, в разделе plugins:
-
+    // 💎 Плагины
     plugins: [
       new HtmlWebpackPlugin({
         template: "./src/templates/index.pug",
@@ -84,25 +89,20 @@ export default async () => {
         template: "./src/templates/brand.pug",
         filename: "brand/index.html",
         chunks: ["brand"],
-        inject: false, // 💎 чтобы не подмешивал свои стили
       }),
-
-      // 🧩 плагины
       new MiniCssExtractPlugin({
         filename: isDev ? "styles.css" : "styles.[contenthash].css",
       }),
-
-      // 💎 вот этот блок вставь после MiniCssExtractPlugin
       new CopyWebpackPlugin({
         patterns: [
           { from: "src/assets", to: "assets" },
           { from: "brand/assets", to: "brand/assets" },
         ],
       }),
-
       new CleanWebpackPlugin(),
     ],
 
+    // ⚙️ Оптимизация
     optimization: {
       minimize: isProd,
       minimizer: [
@@ -117,14 +117,15 @@ export default async () => {
       splitChunks: { chunks: "all" },
     },
 
+    // 🌍 DevServer
     devServer: {
       static: "./dist",
       hot: true,
       open: true,
-      port, // 🌟 теперь автоматически найденный порт
+      port,
     },
 
     resolve: { extensions: [".js", ".json"] },
-    stats: { warningsFilter: [/Deprecation/] },
+    ignoreWarnings: [/Deprecation/],
   };
 };
