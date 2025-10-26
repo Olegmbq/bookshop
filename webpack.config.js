@@ -37,6 +37,7 @@ export default async () => {
       path: path.resolve("dist"),
       filename: "bundle.[contenthash].js",
       assetModuleFilename: "images/[name][ext]",
+      publicPath: "/bookshop/",
     },
 
     module: {
