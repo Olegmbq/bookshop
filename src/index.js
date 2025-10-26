@@ -1,21 +1,21 @@
-import "./assets/styles/main.scss";
-
-// 🧩 Модули
-import { initSlider } from "./modules/slider.js";
-import { loadBooks } from "./modules/books.js";
-import { loadCartPage } from "./modules/cart.js";
+// import "./assets/styles/main.scss";
 
 // 🚀 Инициализация после загрузки страницы
 document.addEventListener("DOMContentLoaded", () => {
   const isCartPage = document.body.classList.contains("cart-page");
   const isMainPage = document.querySelector("#book-list");
+  const isBrandPage = window.location.pathname.includes("brand");
 
-  // 🧭 Загружаем нужный функционал
+  // 🧭 Лениво подгружаем нужные модули
   if (isMainPage) {
-    initSlider();
-    loadBooks();
+    import("./modules/slider.js").then(({ initSlider }) => initSlider());
+    import("./modules/books.js").then(({ loadBooks }) => loadBooks());
   } else if (isCartPage) {
-    loadCartPage();
+    import("./modules/cart.js").then(({ loadCartPage }) => loadCartPage());
+  } else if (isBrandPage) {
+    import("./modules/brand.js").then(() =>
+      console.log("💫 Brand Kit loaded lazily")
+    );
   }
 
   // 🍔 Бургер-меню
