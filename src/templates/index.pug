@@ -1,16 +1,9 @@
 doctype html
-html(lang="en")
+html
   head
     meta(charset="UTF-8")
     meta(name="viewport" content="width=device-width, initial-scale=1.0")
     title Bookshop
-
-    // 🔗 Стили для GitHub Pages и Vercel
-    if vercel
-      link(rel="stylesheet" href="assets/styles/main.css")
-    else
-      link(rel="stylesheet" href="/bookshop/assets/styles/main.css")
-
   body
     header.header
       .container
@@ -23,6 +16,7 @@ html(lang="en")
             li: a(href="#") Categories
             li: a(href="#") About
             li: a(href="#") Contact
+
 
         // 🧿 Бургер
         .burger
@@ -41,15 +35,13 @@ html(lang="en")
     main.main
       section.slider
         .slider__image
-          img#slider-img(
-            src= vercel ? "assets/images/slides/slide1.png" : "/bookshop/assets/images/slides/slide1.png",
-            alt="Slide 1"
-          )
+          img#slider-img(src="assets/images/slides/slide1.png" alt="Slide 1")
           .slider__dots
             span.slider__dot.active
             span.slider__dot
             span.slider__dot
 
+      
       section.content
         aside.categories
           h3 Categories
@@ -67,14 +59,10 @@ html(lang="en")
             li(data-cat="romance") Romance
             li(data-cat="science") Science
             li(data-cat="travel") Travel
-
         section.books
           #book-list
             p.loading Loading books...
           button#load-more Load more
 
+    // Всплывающие уведомления
     #toast-container
-
-    // ⚙️ Webpack-инжект
-    != htmlWebpackPlugin.tags.headTags
-    != htmlWebpackPlugin.tags.bodyTags
