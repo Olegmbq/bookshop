@@ -67,11 +67,12 @@ export default async () => {
     },
 
     // ↓ ниже, в разделе plugins:
+
     plugins: [
       new HtmlWebpackPlugin({
         template: "./src/templates/index.pug",
         filename: "index.html",
-        chunks: ["main"], // подключаем только основной JS
+        chunks: ["main"],
       }),
       new HtmlWebpackPlugin({
         template: "./src/templates/cart.pug",
@@ -79,21 +80,26 @@ export default async () => {
         chunks: ["main"],
       }),
       new HtmlWebpackPlugin({
-        template: "./src/templates/brand.pug", // 🔥 новый шаблон
+        template: "./src/templates/brand.pug",
         filename: "brand/index.html",
-        chunks: ["brand"], // подключаем brand.js + стили
+        chunks: ["brand"],
+        inject: false, // 💎 чтобы не подмешивал свои стили
       }),
-      // остальные плагины (CopyPlugin, CleanWebpackPlugin и т.д.)
 
+      // 🧩 плагины
       new MiniCssExtractPlugin({
         filename: isDev ? "styles.css" : "styles.[contenthash].css",
       }),
+
+      // 💎 вот этот блок вставь после MiniCssExtractPlugin
       new CopyWebpackPlugin({
         patterns: [
           { from: "src/assets", to: "assets" },
-          { from: "brand/assets/favicon.png", to: "favicon.png" },
+          { from: "brand/assets", to: "brand/assets" },
         ],
       }),
+
+      new CleanWebpackPlugin(),
     ],
 
     optimization: {

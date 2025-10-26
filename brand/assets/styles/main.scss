@@ -1,68 +1,115 @@
-/* 🌌 Brand Kit Intro Animation — Oleg & Neuro Code Studio */
+/* 🌌 Oleg & Neuro Code Studio — Brand Kit */
 
+/* 💫 Фон */
 body {
-  background: radial-gradient(circle at 50% 20%, #150018 0%, #0a0010 100%);
+  background: radial-gradient(circle at 50% 20%, #150018 0%, #050010 100%);
   color: #fff;
   font-family: "Poppins", sans-serif;
   overflow-x: hidden;
+  text-align: center;
 }
 
-/* 🔮 Логотип */
-.brand-logo {
-  display: block;
-  margin: 80px auto 20px;
+body {
+  position: relative;
+  overflow: hidden;
+}
+
+/* 🔮 Заголовок */
+h1 {
+  font-size: 2.2rem;
+  margin-top: 60px;
+  color: #b8e8ff;
+  text-shadow: 0 0 15px #00ffff, 0 0 25px #ff00ff, 0 0 50px #00ffff;
+  animation: glowText 4s ease-in-out infinite alternate;
+}
+
+@keyframes glowText {
+  from {
+    text-shadow: 0 0 15px #00ffff, 0 0 25px #ff00ff, 0 0 40px #00ffff;
+  }
+  to {
+    text-shadow: 0 0 35px #ff00ff, 0 0 60px #00ffff, 0 0 80px #ff00ff;
+  }
+}
+
+/* 💎 Логотип */
+.logo {
   width: 220px;
-  opacity: 0;
-  transform: scale(0.95);
-  filter: drop-shadow(0 0 0px transparent);
-  transition: all 1.6s ease;
+  margin-top: 40px;
+  filter: drop-shadow(0 0 25px rgba(0, 255, 255, 0.8))
+    drop-shadow(0 0 50px rgba(0, 255, 255, 0.5))
+    drop-shadow(0 0 100px rgba(255, 0, 255, 0.4));
+  animation: pulse 3.5s infinite ease-in-out;
+  transition: transform 0.4s ease;
 }
 
-.brand-logo.glow-on {
-  opacity: 1;
-  transform: scale(1);
-  filter: drop-shadow(0 0 25px #ff00cc) drop-shadow(0 0 45px #00ccff)
-    drop-shadow(0 0 80px #ff00cc);
+.logo:hover {
+  transform: scale(1.05);
+  filter: drop-shadow(0 0 40px rgba(255, 0, 255, 0.8))
+    drop-shadow(0 0 80px rgba(0, 255, 255, 0.6))
+    drop-shadow(0 0 120px rgba(255, 0, 255, 0.4));
+}
+
+@keyframes pulse {
+  0% {
+    opacity: 0.9;
+    filter: drop-shadow(0 0 15px rgba(0, 255, 255, 0.5))
+      drop-shadow(0 0 30px rgba(255, 0, 255, 0.4))
+      drop-shadow(0 0 60px rgba(0, 255, 255, 0.3));
+  }
+  50% {
+    opacity: 1;
+    filter: drop-shadow(0 0 40px rgba(255, 0, 255, 0.8))
+      drop-shadow(0 0 80px rgba(0, 255, 255, 0.6))
+      drop-shadow(0 0 140px rgba(255, 0, 255, 0.3));
+  }
+  100% {
+    opacity: 0.9;
+    filter: drop-shadow(0 0 15px rgba(0, 255, 255, 0.5))
+      drop-shadow(0 0 30px rgba(255, 0, 255, 0.4))
+      drop-shadow(0 0 60px rgba(0, 255, 255, 0.3));
+  }
 }
 
 /* 💖 Слоган */
 .brand-tagline {
-  text-align: center;
+  margin-top: 15px;
   font-size: 1.1rem;
+  color: #aeefff;
   letter-spacing: 0.5px;
-  color: #ffd8ff;
   opacity: 0;
-  transform: translateY(12px);
-  transition: all 1.6s ease 0.8s;
+  transform: translateY(15px);
+  animation: fadeUp 2s ease forwards 1.2s;
 }
 
-.brand-tagline.fade-in {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-/* ✨ Фоновые частицы */
-@keyframes sparkle {
-  from {
-    opacity: 0;
+@keyframes fadeUp {
+  to {
+    opacity: 1;
     transform: translateY(0);
+  }
+}
+
+/* 🌟 Неоновые искорки */
+.sparkle {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: radial-gradient(circle, #ff00cc 0%, #00ccff 100%);
+  opacity: 0;
+  animation: sparkle 4s ease-in-out infinite;
+  z-index: 20;
+  pointer-events: none;
+}
+
+@keyframes sparkle {
+  0%,
+  100% {
+    opacity: 0;
+    transform: scale(1);
   }
   50% {
     opacity: 1;
-    transform: translateY(-8px);
+    transform: scale(1.6);
   }
-  to {
-    opacity: 0;
-    transform: translateY(0);
-  }
-}
-
-.sparkle {
-  position: absolute;
-  width: 3px;
-  height: 3px;
-  background: radial-gradient(circle, #ff00cc, #00ccff);
-  border-radius: 50%;
-  animation: sparkle 3s ease-in-out infinite;
-  pointer-events: none;
 }
