@@ -8,7 +8,6 @@ import CopyWebpackPlugin from "copy-webpack-plugin";
 import TerserPlugin from "terser-webpack-plugin";
 import * as sass from "sass";
 import portfinder from "portfinder";
-import webpack from "webpack";
 
 // 🧭 Определяем __dirname для ESM
 const __filename = fileURLToPath(import.meta.url);
@@ -76,33 +75,20 @@ export default async () => {
 
     // 💎 Плагины
     plugins: [
-      new webpack.DefinePlugin({
-        "process.env.VERCEL": JSON.stringify(process.env.VERCEL || false),
-      }),
-
       new HtmlWebpackPlugin({
         template: "./src/templates/index.pug",
         filename: "index.html",
         chunks: ["main"],
-        templateParameters: {
-          vercel: !!process.env.VERCEL, // 👈 передаём флаг
-        },
       }),
       new HtmlWebpackPlugin({
         template: "./src/templates/cart.pug",
         filename: "cart/index.html",
         chunks: ["main"],
-        templateParameters: {
-          vercel: !!process.env.VERCEL, // 👈 передаём флаг
-        },
       }),
       new HtmlWebpackPlugin({
         template: "./src/templates/brand.pug",
         filename: "brand/index.html",
         chunks: ["brand"],
-        templateParameters: {
-          vercel: !!process.env.VERCEL, // 👈 передаём флаг сюда
-        },
       }),
       new MiniCssExtractPlugin({
         filename: isDev ? "styles.css" : "styles.[contenthash].css",
