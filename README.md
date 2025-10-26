@@ -31,7 +31,7 @@
   <a href="https://github.com/Olegmbq" target="_blank">
     <img src="https://img.shields.io/badge/🌐_GitHub-6600ff?style=for-the-badge&logo=github&logoColor=white&labelColor=0A0014" alt="GitHub" />
   </a>
-    <a href="https://bookshop-ruddy.vercel.app/" target="_blank">
+    <a href="https://bookshop-ucz5.vercel.app/" target="_blank">
     <img src="https://img.shields.io/badge/🚀_Live_on_Vercel-00cc99?style=for-the-badge&logo=vercel&logoColor=white&labelColor=0A0014" alt="Live on Vercel" />
   </a>
 </p>
@@ -241,8 +241,8 @@ We don’t just code — we create digital stories.
 
 ## 🚀 Live Demo
 
-| 🌐 Project          | 🔗 Link                                                                    |
-| ------------------- | -------------------------------------------------------------------------- |
+| 🌐 Project          | 🔗 Link                                                                  |
+| ------------------- | ------------------------------------------------------------------------ |
 | 🛍️ **Bookshop SPA** | [bookshop-ucz5.vercel.app](https://bookshop-ucz5.vercel.app)             |
 | 💎 **Brand Kit**    | [bookshop-ucz5.vercel.app/brand](https://bookshop-ucz5.vercel.app/brand) |
 
