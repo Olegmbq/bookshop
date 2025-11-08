@@ -1,4 +1,4 @@
-// 📦 webpack.config.js
+// 📦 webpack.config.js — только для Bookshop
 import path from "path";
 import { fileURLToPath } from "url";
 import HtmlWebpackPlugin from "html-webpack-plugin";
@@ -9,59 +9,50 @@ import TerserPlugin from "terser-webpack-plugin";
 import * as sass from "sass";
 import portfinder from "portfinder";
 
-// 🧭 Определяем __dirname для ESM
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-// 🧰 Режим сборки
 const isDev = process.env.NODE_ENV === "development";
 const isProd = !isDev;
 console.log(`🚀 Режим сборки: ${isDev ? "разработка" : "продакшн"}`);
 
-// 🚀 Экспорт конфигурации
 export default async () => {
   const port = await portfinder.getPortPromise({ port: 8080 });
 
   return {
     mode: isDev ? "development" : "production",
 
-    // 💡 Точки входа
-    entry: {
-      main: "./src/index.js",
-      brand: "./src/modules/brand.js",
-    },
+    // 💡 Точка входа только для Bookshop
+    entry: "./src/index.js",
 
-    // 📤 Выходные файлы
+    // 📤 Выход
     output: {
-      path: path.resolve("dist"),
+      path: path.resolve(__dirname, "dist"),
       filename: "bundle.[contenthash].js",
-      assetModuleFilename: "images/[name][ext]",
-      publicPath: process.env.VERCEL ? "/" : "/bookshop/",
+      assetModuleFilename: "assets/[hash][ext][query]",
+      clean: true,
     },
 
     // 🔧 Загрузчики
     module: {
       rules: [
-        {
-          test: /\.pug$/,
-          loader: "pug-loader",
-          options: { pretty: true },
-        },
+        { test: /\.pug$/, loader: "pug-loader", options: { pretty: true } },
         {
           test: /\.s[ac]ss$/i,
           use: [
             MiniCssExtractPlugin.loader,
             "css-loader",
+
             {
               loader: "sass-loader",
-              options: { implementation: sass },
+              options: {
+                implementation: sass,
+                api: "modern-compiler", // ✅ новый API, без предупреждений
+              },
             },
           ],
         },
-        {
-          test: /\.(png|jpg|jpeg|gif|svg)$/i,
-          type: "asset/resource",
-        },
+        { test: /\.(png|jpg|jpeg|gif|svg)$/i, type: "asset/resource" },
         {
           test: /\.js$/,
           exclude: /node_modules/,
@@ -78,26 +69,16 @@ export default async () => {
       new HtmlWebpackPlugin({
         template: "./src/templates/index.pug",
         filename: "index.html",
-        chunks: ["main"],
       }),
       new HtmlWebpackPlugin({
         template: "./src/templates/cart.pug",
         filename: "cart/index.html",
-        chunks: ["main"],
-      }),
-      new HtmlWebpackPlugin({
-        template: "./src/templates/brand.pug",
-        filename: "brand/index.html",
-        chunks: ["brand"],
       }),
       new MiniCssExtractPlugin({
         filename: isDev ? "styles.css" : "styles.[contenthash].css",
       }),
       new CopyWebpackPlugin({
-        patterns: [
-          { from: "src/assets", to: "assets" },
-          { from: "brand/assets", to: "brand/assets" },
-        ],
+        patterns: [{ from: "src/assets", to: "assets" }],
       }),
       new CleanWebpackPlugin(),
     ],
@@ -108,13 +89,9 @@ export default async () => {
       minimizer: [
         new TerserPlugin({
           extractComments: false,
-          terserOptions: {
-            compress: { drop_console: true },
-            output: { comments: false },
-          },
+          terserOptions: { compress: { drop_console: true } },
         }),
       ],
-      splitChunks: { chunks: "all" },
     },
 
     // 🌍 DevServer
@@ -126,6 +103,5 @@ export default async () => {
     },
 
     resolve: { extensions: [".js", ".json"] },
-    ignoreWarnings: [/Deprecation/],
   };
 };
